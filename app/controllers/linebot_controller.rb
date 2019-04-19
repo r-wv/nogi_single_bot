@@ -17,9 +17,10 @@ class LinebotController < ApplicationController
           msg = event.message['text']
           id = msg.to_i
           if find_title(id)
+            title = find_title(id)
             message = [{
             type: 'text',
-            text: find_title(id)
+            text: "「#{title.name}」 センター:#{title.center} 発売日:#{title.release}"
             }]
           else
             message = [{
@@ -45,7 +46,7 @@ private
   def find_title(num)
     title = Title.find_by(number: num)
     if title
-      return title.name, title.center, title.release
+      return title
     else
       nil
     end
