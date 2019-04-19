@@ -43,7 +43,7 @@ private
   end
 
   def find_title(num)
-    title = Title.find_by(id: num)
+    title = Title.find_by(number: num)
     if title
       return title.name, title.center, title.release
     else
