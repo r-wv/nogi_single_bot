@@ -1,5 +1,6 @@
 ja:
   hello: "Hello world"
+  id: "ID"
   name: "名前"
   center: "センター"
   release: "発売日"

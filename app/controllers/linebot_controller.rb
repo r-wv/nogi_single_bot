@@ -16,15 +16,15 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           msg = event.message['text']
           id = msg.to_i
-          if find_name(id)
+          if find_title(id)
             message = [{
             type: 'text',
-            text: find_name(id)
+            text: find_title(id)
             }]
           else
             message = [{
             type: 'text',
-            text: "いないよ！"
+            text: "ないよ！"
             }]
           end
             client.reply_message(event['replyToken'], message)
@@ -42,19 +42,10 @@ private
     }
   end
 
-  def select_word(num)
-    number = num.to_i
-    member = ["","a","b","c","d","e","f","g","h","i",
-              "j","k","l","m","n","o","p","q","r","s",
-              "s","s","t","u","v","w","x","y","z","aa",
-              "bb","cc","dd","ee","ff","gg","hh","ii","jj","kk","ll"]
-    return member[number]
-  end
-
-  def find_name(num)
-    member = Member.find_by(number: num)
-    if member
-      member.name
+  def find_title(num)
+    title = Title.find_by(id: num)
+    if title
+      return title.name, title.center, title.release
     else
       nil
     end
