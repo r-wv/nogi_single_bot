@@ -45,7 +45,7 @@ private
   def find_title(num)
     title = Title.find_by(number: num)
     if title
-      return title.name
+      return title.name, title.center, title.release
     else
       nil
     end
